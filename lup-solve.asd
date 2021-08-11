@@ -1,6 +1,7 @@
 (defsystem lup-solve
   :name "lup-solve"
   :author "Thomas HOULLIER"
+  :depends-on ("mat-ops")
   :components
   ((:module "src"
     :components ((:file "package")
