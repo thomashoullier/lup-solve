@@ -11,24 +11,23 @@ systems of equations when given a LUP decomposition.
 * We solve for square systems (same number of variables as equations).
 
 ## Usage
-**solve** L U p b => x
+**solve** LU p b => x
 
 Solve the linear system of equations decomposed into L.U.x = P.b
-* L is unit lower triangular. Native 2D array.
-* U is upper triangular. Native 2D array.
+* L is unit lower triangular. U is upper triangular. Both are stored
+  in LU with unit diagonal of L omitted.
 * p stores the row permutations in a vector. P.b has element b\_p(i) in
   the i-th position.
-* b is a native vector with the right hand sides before permutation.
+* b is a vector with the right hand sides before permutation.
 
 Return x the solution vector.
 
 ```common-lisp
-(let ((L #2A((1 0 0) (0.2 1 0) (0.6 0.5 1)))
-      (U #2A((5 6 3) (0 0.8 -0.6) (0 0 2.5)))
+(let ((LU #2A((5 6 3) (1/5 4/5 -3/5) (3/5 1/2 5/2)))
       (p #(2 0 1))
       (b #(3 7 8)))
-  (format t "~&~A~%" (solve L U p b)))
-;; => #(-1.4000002 2.2 0.6)
+  (solve L U p b))
+;; => #(-7/5 11/5 3/5)
 ```
 
 ## Test
