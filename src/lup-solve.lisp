@@ -12,8 +12,6 @@
   (let* ((n (nrows LU))
          (y (make-array n))
          (x (make-array n)))
-    (when (not (and (squarep LU) (= n (length p) (length b))))
-      (error "lup-solve:solve : There is some dimension mismatch."))
     (loop for i from 0 below n do
       (setf (aref y i) (- (aref b (aref p i))
                           (loop for j from 0 upto (- i 1)
